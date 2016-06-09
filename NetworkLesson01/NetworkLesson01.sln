@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkLesson01", "NetworkLesson01\NetworkLesson01.csproj", "{18047649-F7F9-4697-9D27-03ACC1ACA18D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSincServer", "SimpleSincServer\SimpleSincServer.csproj", "{22AE1AFC-AA8C-4D99-94F0-B1831416AFE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleClient", "SimpleClient\SimpleClient.csproj", "{3AC9CB2A-8F34-43C8-B9FC-8541BC03E8BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18047649-F7F9-4697-9D27-03ACC1ACA18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18047649-F7F9-4697-9D27-03ACC1ACA18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18047649-F7F9-4697-9D27-03ACC1ACA18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18047649-F7F9-4697-9D27-03ACC1ACA18D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22AE1AFC-AA8C-4D99-94F0-B1831416AFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22AE1AFC-AA8C-4D99-94F0-B1831416AFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22AE1AFC-AA8C-4D99-94F0-B1831416AFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22AE1AFC-AA8C-4D99-94F0-B1831416AFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC9CB2A-8F34-43C8-B9FC-8541BC03E8BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC9CB2A-8F34-43C8-B9FC-8541BC03E8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC9CB2A-8F34-43C8-B9FC-8541BC03E8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC9CB2A-8F34-43C8-B9FC-8541BC03E8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

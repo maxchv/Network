@@ -1,0 +1,33 @@
+Введение/синхронный Tcp
+
+https://youtu.be/4D13O_qdotE
+https://youtu.be/d4fHHw7gTIc
+
+Аснихронный Tcp
+
+https://youtu.be/LHxTIenIMpU
+https://youtu.be/hCee5xr3VdA
+
+Udp 
+
+https://youtu.be/-h6sBhTs_Fg
+https://youtu.be/uW5lWF_A4I4
+
+TcpClient
+
+https://youtu.be/9suaVrdd5Ng
+
+WebRequest, WebResponse, WebClient
+
+https://youtu.be/a3WYEvf54iE
+https://youtu.be/zYVRLx4456c
+
+Smtp
+
+https://youtu.be/DRgMTZVmIAQ
+https://youtu.be/je3VsSq-a5A
+
+Ftp
+
+https://youtu.be/7K6ltrjjRy8
+https://youtu.be/ruaNV_HjHJ0

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BroadcastSender", "BroadcastSender\BroadcastSender.csproj", "{78897D18-BF99-4064-A6C3-B1779ED2C5FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BroadcastReceiver", "BroadcastReceiver\BroadcastReceiver.csproj", "{96B48A50-1707-4EF3-9251-C7250AFF3F97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78897D18-BF99-4064-A6C3-B1779ED2C5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78897D18-BF99-4064-A6C3-B1779ED2C5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78897D18-BF99-4064-A6C3-B1779ED2C5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78897D18-BF99-4064-A6C3-B1779ED2C5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B48A50-1707-4EF3-9251-C7250AFF3F97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B48A50-1707-4EF3-9251-C7250AFF3F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B48A50-1707-4EF3-9251-C7250AFF3F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B48A50-1707-4EF3-9251-C7250AFF3F97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2 @@
+Используя WebRequest, WebResponse реализовать Windows Forms или WPF приложение, 
+парсящее сайт habrhabr.ru и выводит заголовки (с ссылками) последних статей
