@@ -1,0 +1,50 @@
+﻿<Window x:Class="ClientChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientChat"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
+    <Grid Name="GridContent" Background="{DynamicResource ElementsColor}">
+        <Grid.Resources>
+            <SolidColorBrush x:Key="BackgroundColor" Color="White"></SolidColorBrush>
+            <SolidColorBrush x:Key="ElementsColor" Color="LightBlue"></SolidColorBrush>
+            <SolidColorBrush x:Key="TextColor" Color="Black"></SolidColorBrush>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Подключится" Name="ConnetctedMenuItem" Click="ConnectionMenuItem_Click"></MenuItem>
+            <MenuItem Header="Оформление">
+                <MenuItem Header="Фон" Name="BackgroundMenuItem" IsCheckable="False">
+                </MenuItem>
+                <MenuItem Header="Елементы" Name="ColorElementsMenuItem" IsCheckable="False"/>
+                <MenuItem Header="Цвет текста" Name="FontColorMenuItem" IsCheckable="False"/>
+            </MenuItem>
+            <MenuItem Header="Имя" Click="NameMenuItem_Click"></MenuItem>
+        </Menu>
+        <ListBox Grid.Row="1" Margin="5" Foreground="{DynamicResource TextColor}" Background="{DynamicResource BackgroundColor}" Name="MessagesListBox">
+            <ListBoxItem>
+                
+            </ListBoxItem>
+        </ListBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox TextWrapping="Wrap" Name="MessageTextBox" VerticalScrollBarVisibility="Auto" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource TextColor}" Margin="5">
+
+            </TextBox>
+            <Button  Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource TextColor}" Grid.Column="1" IsDefault="True" VerticalAlignment="Center" Content="Отправить" Margin="5" Name="SendMessageButton" Click="SendMessageButton_Click"/>
+        </Grid>
+        <StackPanel Grid.Row="3">
+            <TextBlock Name="StatusConnection"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,47 @@
+﻿<controls:MetroWindow x:Class="ChatClient.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      mc:Ignorable="d"
+                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Client"
+                      MinHeight="350" Height="350"
+                      MinWidth="700" Width="700"
+                      Icon="Images/Client.ico"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      ShowIconOnTitleBar="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="30">
+            <MenuItem Header="Подключиться к серверу" Click="MenuItem_OnClick"/>
+        </Menu>
+
+        <GroupBox Header="Users" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Margin="10,0,5,10">
+            <ListBox  Width="150" Name="UsersListBox" SelectedIndex="0">
+                <TextBlock>Всем</TextBlock>
+            </ListBox>
+        </GroupBox>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Name="MessagesTextBox" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Margin="0,0,10,5" />
+        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="24" Height="24" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,30,10" ToolTip="Очистить переписку" Click="ClearChatButton_Click" Padding="0" Focusable="False">
+            <Image Source="Images/ClearTextIcon.png"/>
+        </Button>
+
+        <TextBox Grid.Row="2" Grid.Column="1" Name="MessageTextBox" Height="60" Margin="0,0,10,10" PreviewKeyDown="MessageTextBox_OnPreviewKeyDown"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Visible"/>
+        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="24" Height="24" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="0,0,30,13" ToolTip="Отправить сообщение" Click="ButtonSend_OnClick" Padding="0" Focusable="False" Name="SendMessageButton" IsEnabled="False">
+            <Image Source="Images/SendIcon.png"/>
+        </Button>
+    </Grid>
+</controls:MetroWindow>
