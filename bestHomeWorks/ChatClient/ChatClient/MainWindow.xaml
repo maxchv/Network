@@ -1,0 +1,64 @@
+﻿<Controls:MetroWindow x:Class="ChatClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:ChatClient"
+        mc:Ignorable="d" Height="408" Width="325" ResizeMode="NoResize" Closing="MetroWindow_Closing">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button x:Name="btnUserName" Click="btnUserName_Click" Margin="0 0 190 0">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Kind="People"/>
+                        <TextBlock Text="{Binding UserName}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button>
+                <Button.Content>
+                    <iconPacks:PackIconModern Kind="Settings"/>
+                </Button.Content>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <StackPanel>
+        <ScrollViewer Height="335" x:Name="scroll">
+            <StackPanel ScrollViewer.VerticalScrollBarVisibility="Auto" x:Name="stackPanelMsgs"/>
+        </ScrollViewer>
+        <StackPanel Height="39">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Width" Value="35"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Controls:Badged Badge="{Binding AffixFiles}" Panel.ZIndex="1" Margin="5 10">
+                    <Button x:Name="btnAffixFiles" Click="btnAffixFiles_Click">
+                        <Button.Content>
+                            <Image Source="Images/affix.png"/>
+                        </Button.Content>
+                    </Button>
+                </Controls:Badged>
+                <TextBox Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ваше сообщение..."
+                         Controls:TextBoxHelper.WatermarkAlignment="Right" Width="234"
+                         AcceptsReturn="True" Height="35"
+                         x:Name="tbMsg">
+                </TextBox>
+                <Button x:Name="btnSend" Margin="5 10" Click="btnSend_Click">
+                    <Button.Content>
+                        <Image Source="Images/send-arrow.png"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <Grid>
+            <TextBlock Background="#0080AB"/>
+        </Grid>
+    </StackPanel>
+</Controls:MetroWindow>

@@ -1,0 +1,35 @@
+﻿<Controls:MetroWindow x:Class="Server.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="Server"
+                      MinHeight="350" Height="350"
+                      MinWidth="600" Width="600"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      WindowStartupLocation="CenterScreen">
+    <Grid>
+        <GroupBox Header="Отправляемый скриншот">
+            <Image Name="ScreenshotImage"/>
+        </GroupBox>
+
+        <Controls:NumericUpDown VerticalAlignment="Top" 
+                                HorizontalAlignment="Right" 
+                                Margin="6" 
+                                Height="26" 
+                                ToolTip="Частота отправки скриншотов (в милисекундах)" 
+                                Width="150" 
+                                VerticalContentAlignment="Center" 
+                                HorizontalContentAlignment="Center"
+                                InterceptArrowKeys="False"
+                                Value="2000"
+                                Minimum="1000"
+                                Maximum="59000"
+                                Interval="1000"
+                                BorderBrush="Gray"
+                                BorderThickness="0,0,0,2"
+                                Background="Transparent"
+                                StringFormat="{}{0} мс"
+                                Name="FrequencyOfSending"/>
+    </Grid>
+</Controls:MetroWindow>

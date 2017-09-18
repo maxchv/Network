@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ChatClient.MessageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChatClient"
+             mc:Ignorable="d" d:DesignWidth="300" Margin="5">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{Binding MsgInfo.PathToImg}" Width="40" Height="40"/>
+            <Label Width="189">
+                <Label.Content>
+                    <TextBlock Text="{Binding MsgInfo.Text}" TextWrapping="Wrap" Width="180" />
+                </Label.Content>
+            </Label>
+            <Label>
+                <Label.Content>
+                    <TextBlock Text="{Binding MsgInfo.Time}" TextWrapping="Wrap" />
+                </Label.Content>
+            </Label>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,70 @@
+﻿<Controls:MetroWindow x:Class="ChatRoom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatRoom"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                     xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="ChatRoom" Height="350" Width="654.253" Icon="15c6_watch_dogs.png" Loaded="MetroWindow_Loaded" Name="Window">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <StackPanel Orientation="Horizontal" Name="UserInfo">
+                <Button Content="{Binding CurrentUser.Name}" Click="ButtonName_Click"/>
+                <TextBlock Text="Получатель:" VerticalAlignment="Center"/>
+                <Button Content="{Binding EndPoint}" Click="ButtonConnection_Click"/>
+                <TextBlock Text="Удаленный клиент:" VerticalAlignment="Center"/>
+                <Button Content="{Binding BroadcastEndPoint}" Click="ButtonBroadcast_Click"/>
+            </StackPanel>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Пользователи" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Margin="5">
+            <ListBox Name="UsersList">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="5" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Margin="5">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <ItemsControl Name="Messages" ItemsSource="{Binding ElementName=UsersList,Path=SelectedItem.Messages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Border CornerRadius="5" Padding="5" Background="{StaticResource AccentColorBrush}">
+                                        <StackPanel>
+                                            <TextBlock MaxWidth="300" Text="{Binding UserName}" FontWeight="Bold"/>
+                                            <TextBlock MaxWidth="300" TextWrapping="Wrap" Text="{Binding Message}"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <TextBlock Margin="3" Text="{Binding Time}" FontSize="9"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+            <Grid Grid.Row="1"  Margin="5">
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Name="TextBoxMessage" VerticalScrollBarVisibility="Auto" KeyUp="TextBox_KeyUp"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>

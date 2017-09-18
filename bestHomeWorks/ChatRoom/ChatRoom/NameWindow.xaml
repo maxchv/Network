@@ -1,0 +1,17 @@
+﻿<Controls:MetroWindow x:Class="ChatRoom.NameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatRoom"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="Имя" MinHeight="100" MinWidth="100" Height="150" Width="300" MaxHeight="300" MaxWidth="600" Icon="15c6_watch_dogs.png">
+    <StackPanel VerticalAlignment="Center">
+        <TextBox Margin="5" TextChanged="TextBox_TextChanged"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button IsCancel="True" Content="Отмена" Margin="5" Click="Button_Click_1"/>
+            <Button IsDefault="True" Content="Принять" Margin="5" Click="Button_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Controls:MetroWindow>
