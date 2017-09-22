@@ -1,0 +1,7 @@
+Написать приложение для отправки/получения 
+электронной почты по протоколам SMTP/POP3
+
+Дополнительное чтение на тему протокола POP3: http://sgww.livejournal.com/9352.html
+и по SMTP: https://users.cs.cf.ac.uk/Dave.Marshall/PERL/node175.html
+
+Что нужно сдеалать в видео: https://youtu.be/FPgBfymeA5M
