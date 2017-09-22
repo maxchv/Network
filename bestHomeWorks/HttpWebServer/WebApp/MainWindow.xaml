@@ -1,0 +1,63 @@
+﻿<controls:MetroWindow x:Class="WebApp.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Web App"
+                      Height="400"
+                      Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:NumericUpDown Name="Port"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                ToolTip="Порт"
+                                Minimum="1000"
+                                Maximum="65000"
+                                Interval="1" 
+                                Value="8090"
+                                StringFormat="{}{0}"
+                                Margin="5,0,0,0"/>
+
+        <Button Name="StartStopServerButton"
+                Grid.Row="0"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Content="Запустить сервер"
+                Style="{DynamicResource MetroFlatButton}"
+                Margin="5,0,5,0"
+                Click="StartStopServerButton_OnClick"/>
+
+        <GroupBox Grid.Row="1" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="3"
+                  Header="Логи">
+            <Grid>
+                <TextBox Name="Logs" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
+                <Button HorizontalAlignment="Right" 
+                        VerticalAlignment="Bottom" 
+                        Margin="0,0,25,5" 
+                        Width="24" 
+                        Height="24" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Padding="0" 
+                        ToolTip="Очистить логи" 
+                        Click="ClearButton_OnClick" 
+                        Focusable="False">
+                    <Image Source="Images/ClearTextIcon.png"/>
+                </Button>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</controls:MetroWindow>
