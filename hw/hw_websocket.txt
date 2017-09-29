@@ -1,0 +1,6 @@
+Написать чат используя websocket.
+Предусмотреть передачу сообщений в общий чат и в личку.
+
+Видео:  https://youtu.be/9JUlvfNAhKI
+	https://youtu.be/NIjVOAhj6_o
+	https://youtu.be/AIr9cLjY7KE

@@ -1,0 +1,117 @@
+﻿<controls:MetroWindow x:Class="FTPZilla.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="FTPZilla"
+                      Height="400"
+                      Width="800"
+
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+
+                      WindowStartupLocation="CenterScreen"
+                      
+                      ShowIconOnTitleBar="True"
+                      Icon="ApplicationIcon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox Grid.Column="0"
+                     Name="HostTextBox"
+                     VerticalAlignment="Center"
+                     controls:TextBoxHelper.Watermark="Host"
+                     ToolTip="Host"
+                     controls:TextBoxHelper.ClearTextButton="True"
+                     Margin="0,0,5,0"
+                     Text="ftp://127.0.0.1"/>
+            <TextBox Grid.Column="1"
+                     Name="LoginTextBox"
+                     VerticalAlignment="Center"
+                     controls:TextBoxHelper.Watermark="Login"
+                     ToolTip="Login"
+                     controls:TextBoxHelper.ClearTextButton="True"
+                     Margin="0,0,5,0"
+                     Text="user"/>
+            <PasswordBox Grid.Column="2"
+                        Name="PasswordPasswordBox"
+                        VerticalAlignment="Center"
+                        controls:TextBoxHelper.Watermark="Password"
+                        ToolTip="Password"
+                        controls:TextBoxHelper.ClearTextButton="True"
+                        Margin="0,0,5,0"
+                         Password="12345"/>
+            
+            <Button Grid.Column="3"
+                    Content="Connect"
+                    Style="{DynamicResource MetroFlatButton}"
+                    Click="ConnectButton_OnClick"
+                    VerticalAlignment="Center"
+                    Padding="20,5"/>
+        </Grid>
+        <Grid Grid.Row="1"
+              Margin="5">
+            <ListView Name="FilesListView" 
+                      MouseDoubleClick="FilesListView_OnMouseDoubleClick"
+                      DragEnter="FilesListView_OnDragEnter"
+                      Drop="FilesListView_OnDrop"
+                      AllowDrop="True">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Удалить" Click="RemoveMenuItem_OnClick"/>
+                        <MenuItem Header="Загрузить файлы" Click="UploadFilesMenuItem_OnClick"/>
+                        <MenuItem Header="Выгрузить файлы" Click="DownloadMenuItem_OnClick"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Имя" Width="500">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="32"
+                                               Height="32"
+                                               Source="{Binding FileImage}"/>
+                                        <TextBlock Text="{Binding FileName}"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Size" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FileSize}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Date of creation" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FileDateCreation}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <TextBlock Name="StatusBar"/>
+        </StatusBar>
+    </Grid>
+</controls:MetroWindow>
+

@@ -1,0 +1,70 @@
+﻿<Controls:MetroWindow x:Class="WebSiteParser.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Web Site Parser"
+                      Height="150"
+                      Width="600"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      ShowIconOnTitleBar="True"
+                      Icon="ApplicationIcon.ico">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Row="0"
+                 Grid.Column="0"
+                 Controls:TextBoxHelper.Watermark="Путь куда будет загружен сайт"
+                 ToolTip="Путь куда будет загружен сайт" 
+                 IsReadOnly="True"
+                 Name="RootFolderTextBox"
+                 VerticalContentAlignment="Center"
+                 VerticalAlignment="Center"
+                 Height="28"/>
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                Content="Обзор..."
+                Style="{DynamicResource MetroFlatButton}"
+                Click="BrowseButton_OnClick"
+                Margin="10,0,0,0"
+                Padding="20,5"
+                Height="30"
+                Name="BrowseFolderButton"/>
+        
+        <TextBox Grid.Row="1" 
+                 Grid.Column="0" 
+                 Controls:TextBoxHelper.Watermark="URL загружаемого сайта"
+                 ToolTip="URL загружаемого сайта" 
+                 Name="UrlTextBox" 
+                 VerticalContentAlignment="Center"
+                 VerticalAlignment="Center" 
+                 Height="28"
+                 Text="https://itstep.dp.ua/"/>
+        <Button Grid.Row="1" 
+                Grid.Column="1" 
+                Content="Загрузить"
+                Style="{DynamicResource MetroFlatButton}"
+                Margin="10,0,0,0"
+                Height="30"
+                Padding="20,5"
+                Click="ParseButton_OnClick"
+                Name="ParseSiteButton"/>
+        
+        <Controls:MetroProgressBar Grid.Row="2"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Name="MetroProgressBar"
+                                   IsIndeterminate="True"
+                                   ToolTip="Подождите идет загрузка"
+                                   Visibility="Hidden"/>
+    </Grid>
+
+</Controls:MetroWindow>
