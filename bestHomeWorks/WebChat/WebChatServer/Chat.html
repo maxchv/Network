@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Многопользовательский Web - чат</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="header_container">
+        <p id="welcome">Добро пожаловать</p>
+        <select id="usersList">
+            <option>Test1</option>
+            <option>Test2</option>
+            <option>Test3</option>
+            <option>Test4</option>
+            <option>Test5</option>
+        </select>
+    </div>
+    <div id="chat_body"></div>
+    <div class="messagebox">
+        <input class="input" type="text" id="usermsg" placeholder="Сообщение" required />
+        <button id="submitmsg" class="buttonsend">
+            <img width="32" height="32" title="Отправить" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojRkU5OTIzOyIgZD0iTTEyMCwzMzkuMjI2VjQ5Ni45OWMwLDE0LjM3NCwxOC4zOCwyMC40OTksMjYuOTk3LDguOTk0bDc3LjA2NS0xMDIuNzI5bDIzLjQ5Mi0xMi4wMzdMNTAxLjkxOSwzMS41NyAgbDQuNzMxLTI3Ljk2NmwtNDEuMzI5LDIyLjgzOUwxMTkuOTE2LDMyNi4yODhMMTIwLDMzOS4yMjZ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRURCNDE7IiBkPSJNNDkxLjIzNywxLjE5NkM0OTAuNTYsMS40NjcsOC45MzMsMjQzLjI4Miw4LjI3OSwyNDMuNjFjLTEwLjUwMyw1LjI1MS0xMS4xNDksMjAuMDI0LTEuMTU3LDI2LjE5MSAgbDExMi44NjYsNjkuNDYzTDUwNi42MzgsMy42NDJsMCwwQzUwMi43MDcsMC4yMzYsNDk3LjA2Mi0xLjIxOCw0OTEuMjM3LDEuMTk2eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkZDQzMzOyIgZD0iTTUwNy4xNjUsNC4zNGMtMC4yMTYtMC4yMTEtMC4yODctMC41MzgtMC41MTUtMC43MzZsLTIuOTM1LDQuMTZsLTI3OS42NTMsMzk1LjQ5bDE3My4wNzEsMTA2LjUwOSAgYzkuMDE0LDUuNTQxLDIwLjY4LDAuMjU4LDIyLjYwMy0xMC4wMDVsOTIuMDIxLTQ4MS45ODlDNTEyLjczNSwxMi42ODIsNTEwLjY3Myw3Ljc1NSw1MDcuMTY1LDQuMzR6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/>
+        </button>
+    </div>
+</div>        
+        <script>
+            var userNick;
+            var userId;
+
+            do {
+                userNick = prompt('Введите свой никнейм:', 'user');
+            } while (userNick === null || userNick === '')
+
+            var welcome = document.querySelector("#welcome");
+            welcome.innerHTML = `Добро пожаловать, <b>${userNick}<b>!`;
+
+            var webSocket = new WebSocket("ws://localhost");
+            var log = document.getElementById("chat_body");
+
+            webSocket.onopen = function (event) {
+                log.innerHTML += `<div class=\"message\">Подключение ${new Date()}</div><br>`;
+
+                var msg = `Connected new user: ${userNick}`;
+                webSocket.send(msg);
+            };
+
+            webSocket.onclose = function (event) {
+                log.innerHTML += `<div class=\"message\">Соединение закрыто at ${new Date()}</div><br>`;
+            };
+
+            webSocket.onerror = function (event) {
+                log.innerHTML += "<div class=\"message\">Ошибка подключения</div><br>";
+            };
+
+            webSocket.onmessage = function (event) {
+                var request = event.data;
+                var list = document.getElementById('usersList');
+
+                if (request.indexOf('clear_user_list') === 0) {
+                    while (list.firstChild) {
+                        list.removeChild(list.firstChild);
+                    }
+
+                    return;
+                }
+
+                var res = request.match(/userName:(.*);userId:(.*)/);
+
+                if (res != null) {
+                    var opt = document.createElement('option');
+                    opt.value = res[2];
+                    opt.innerHTML = res[1];
+
+                    list.appendChild(opt);
+
+                    return;
+                }
+
+                log.innerHTML += "<div class=\"message\">" + request + "</div><br>";
+            };
+
+            var btn = document.getElementById('submitmsg');
+            var msgTextArea = document.querySelector("#usermsg");
+
+            btn.onclick = function (event) {
+                if (webSocket.readyState == webSocket.OPEN) {
+                    var list = document.getElementById('usersList');
+
+                    var value = list.options[list.selectedIndex].value;
+
+                    var msg = "ID:" + value + ";Message: " + msgTextArea.value;
+                    log.innerHTML += "<div class=\"message_you\">" + userNick + ": " + msgTextArea.value + "</div><br>";
+                    webSocket.send(msg);
+
+                    msgTextArea.value = '';
+                }
+            };
+        </script>
+</body>
+</html>
