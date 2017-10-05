@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Client">
+    <Style x:Key="EnableButtonStyle" TargetType="Button">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"
+                            Background="{TemplateBinding Background}">
+                        
+                        
+                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                        Content="{TemplateBinding Content}"
+                                        Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"
+                            Background="{TemplateBinding Background}">
+
+
+                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                        Content="{TemplateBinding Content}"
+                                        Foreground="{TemplateBinding Foreground}"/>
+
+                        <!--<VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="DarkOrange"  Duration="0:0:0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness" From="1" To="3" Duration="0:0:0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="Black" Duration="0:0:0"/>
+                                        <ThicknessAnimation Storyboard.TargetProperty="BorderThickness" From="3" To="1" Duration="0:0:0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>-->
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
