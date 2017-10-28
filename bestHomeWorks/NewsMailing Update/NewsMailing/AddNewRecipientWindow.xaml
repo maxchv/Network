@@ -1,0 +1,51 @@
+﻿<Controls:MetroWindow x:Class="NewsMailing.AddNewRecipientWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="Добавление нового получателя"
+                      Height="250"
+                      Width="500"
+
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+
+                      WindowStartupLocation="CenterScreen"
+                      ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBox Grid.Row="0"
+                 Controls:TextBoxHelper.Watermark="Фамилия"
+                 Controls:TextBoxHelper.ClearTextButton="True"
+                 ToolTip="Фамилия"
+                 Name="Surname"
+                 VerticalAlignment="Center"
+                 Margin="20,0"/>
+        <TextBox Grid.Row="1"
+                 Controls:TextBoxHelper.Watermark="Имя"
+                 Controls:TextBoxHelper.ClearTextButton="True"
+                 ToolTip="Имя"
+                 Name="FirstName"
+                 VerticalAlignment="Center"
+                 Margin="20,0"/>
+        <TextBox Grid.Row="2"
+                 Controls:TextBoxHelper.Watermark="Email"
+                 Controls:TextBoxHelper.ClearTextButton="True"
+                 ToolTip="Email"
+                 Name="Email"
+                 VerticalAlignment="Center"
+                 Margin="20,0"/>
+        
+        <Button Grid.Row="3"
+                Content="Добавить"
+                Click="AddNewRecipientButton_OnClick"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Padding="20,10"/>
+    </Grid>
+</Controls:MetroWindow>

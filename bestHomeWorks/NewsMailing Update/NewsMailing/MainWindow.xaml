@@ -1,0 +1,379 @@
+﻿<controls:MetroWindow x:Class="NewsMailing.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="Массовая рассылка"
+                      Height="500"
+                      Width="850"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      WindowStartupLocation="CenterScreen"
+                      ShowIconOnTitleBar="True"
+                      Icon="ApplicationIcon.ico">
+    <Grid Margin="5,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0" 
+                     Name="ReceiversList"
+                     BorderBrush="DarkGray"
+                     BorderThickness="1"
+                     ScrollViewer.CanContentScroll="False"
+                     ToolTip="Список получателей">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,10, 10, 10">
+                            <Border BorderBrush="Orange"
+                                    BorderThickness="0,0,0,2"
+                                    Grid.Row="0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBox Grid.Row="0"
+                                             IsReadOnly="True"
+                                             BorderBrush="LightGray"
+                                             BorderThickness="0,0,0,1"
+                                             Text="{Binding FirstName}"
+                                             Background="Transparent"/>
+                                    <TextBox Grid.Row="1"
+                                             IsReadOnly="True"
+                                             BorderBrush="LightGray"
+                                             BorderThickness="0,0,0,1"
+                                             Text="{Binding Surname}"
+                                             Background="Transparent"/>
+                                    <TextBox Grid.Row="2"
+                                             IsReadOnly="True"
+                                             BorderBrush="LightGray"
+                                             BorderThickness="0,0,0,1"
+                                             Text="{Binding Email}"
+                                             Background="Transparent"/>
+                                </Grid>
+                            </Border>
+                            <controls:Badged Grid.Row="0"
+                                             Badge="X"
+                                             BadgePlacementMode="BottomRight"
+                                             BadgeBackground="Red"
+                                             MouseDown="RemoveRecipientBadged_OnMouseDown"
+                                             Tag="{Binding Id}"
+                                             ToolTip="Удалить получателя"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <controls:Badged Grid.Row="0" 
+                             Badge="{Binding ElementName=ReceiversList, Path=Items.Count}"
+                             BadgeBackground="Orange"
+                             ToolTip="Количество получателей"/>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Focusable="False"
+                        Margin="10,10,10,0"
+                        Click="AddNewRecipientButton_OnClick">
+                    <Image Width="32"
+                           Height="32"
+                           Source="Images/Add.png"
+                           ToolTip="Добавить нового получателя"/>
+                </Button>
+                <Button Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Focusable="False"
+                        Margin="10,10,10,0"
+                        Click="LoadReceiversFromFileButton_OnClick">
+                    <Image Width="32"
+                           Height="32"
+                           Source="Images/UploadOfFile.png"
+                           ToolTip="Загрузить получателей из файла"/>
+                </Button>
+                <Button Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        Focusable="False"
+                        Margin="10,10,10,0"
+                        Click="ClearReceiversListButton_OnClick">
+                    <Image Width="32"
+                           Height="32"
+                           Source="Images/ClearList.png"
+                           ToolTip="Очистить список получателей"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         BorderThickness="0,0,0,1"
+                         Background="Transparent"
+                         Name="EmailSender"
+                         ToolTip="Email отправителя"
+                         controls:TextBoxHelper.Watermark="Email отправителя"
+                         controls:TextBoxHelper.ClearTextButton="True"
+                         Margin="0,2"/>
+
+                <PasswordBox Grid.Column="1"
+                         BorderThickness="0,0,0,1"
+                         Background="Transparent"
+                         Name="PasswordEmailSender"
+                         ToolTip="Пароль"
+                         controls:TextBoxHelper.Watermark="Пароль от почты"
+                         controls:TextBoxHelper.ClearTextButton="True"
+                         Margin="5,0,0,2"/>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         BorderThickness="0,0,0,1"
+                         Background="Transparent"
+                         Name="NicknameEmailSender"
+                         ToolTip="Никнейм отправителя"
+                         controls:TextBoxHelper.Watermark="Никнейм отправителя"
+                         controls:TextBoxHelper.ClearTextButton="True"
+                         Margin="0,0,0,2"/>
+                
+                <TextBox Grid.Column="1"
+                         BorderThickness="0,0,0,1"
+                         Background="Transparent"
+                         Name="SubjectTextBox"
+                         ToolTip="Тема письма"
+                         controls:TextBoxHelper.Watermark="Тема письма"
+                         controls:TextBoxHelper.ClearTextButton="True"
+                         Margin="5,0,0,2"/>
+            </Grid>
+            
+
+            <Grid Grid.Row="2"
+                  Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         Name="MessageTextbox"
+                         ToolTip="Текст письма"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         TextWrapping="Wrap"
+                         controls:TextBoxHelper.Watermark="Текст письма"
+                         Margin="0,0,5,0"/>
+                <Button  Grid.Column="0"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         Focusable="False"
+                         Margin="0,0,15,40"
+                         VerticalAlignment="Bottom"
+                         HorizontalAlignment="Right"
+                         Click="ClearMessageButton_OnClick">
+                    <Image Width="24"
+                           Height="24"
+                           Source="Images/Eraser.png"
+                           ToolTip="Очистить"/>
+                </Button>
+                <Button  Grid.Column="0"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         Focusable="False"
+                         Margin="0,0,15,10"
+                         VerticalAlignment="Bottom"
+                         HorizontalAlignment="Right"
+                         Click="SendButton_OnClick">
+                    <Image Width="24"
+                           Height="24"
+                           Source="Images/Send.png"
+                           ToolTip="Отправить"/>
+                </Button>
+                
+
+                <ListView Grid.Column="1"
+                          Name="AttachedFilesListView"
+                          ScrollViewer.CanContentScroll="False"
+                          BorderBrush="LightGray"
+                          BorderThickness="1">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid VerticalAlignment="Top"
+                                  ToolTip="{Binding Name}">
+                                <StackPanel VerticalAlignment="Top">
+                                    <Image Source="Images/File.png" 
+                                           VerticalAlignment="Top"
+                                           Width="64"
+                                           Height="64"/>
+                                    <TextBlock Text="{Binding Name}"
+                                               MaxWidth="80"
+                                               TextTrimming="CharacterEllipsis"/>
+                                </StackPanel>
+                                <controls:Badged Grid.Row="0"
+                                                 Badge="X"
+                                                 BadgeBackground="IndianRed"
+                                                 MouseDown="RemoveAttachedFileBadged_OnMouseDown"
+                                                 Margin="0,8,5,0"
+                                                 Tag="{Binding Id}"
+                                                 VerticalAlignment="Top"
+                                                 ToolTip="Удалить файл"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <controls:Badged Grid.Column="1"
+                                 Badge="{Binding ElementName=AttachedFilesListView, Path=Items.Count}"
+                                 BadgeBackground="Orange"
+                                 BadgePlacementMode="TopLeft"
+                                 ToolTip="Количество прикрепленный файлов"
+                                 Margin="4,0,0,0"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Column="0"
+                              Content="HTML формат"
+                              Checked="IsBodyHtmlCheckBox_OnChecked"
+                              Unchecked="IsBodyHtmlCheckBox_OnChecked"
+                              Name="IsBodyHtmlCheckBox"/>
+
+                    <CheckBox Grid.Column="1"
+                              Content="Из файла?"
+                              Checked="IsFileBodyHtmlCheckBox_OnChecked"
+                              Unchecked="IsFileBodyHtmlCheckBox_OnChecked"
+                              Name="IsFileBodyHtmlCheckBox"
+                              Margin="5,0,0,0"
+                              Visibility="Hidden"/>
+                </Grid>
+                
+
+                <Grid Grid.Column="1"
+                      VerticalAlignment="Center"
+                      Name="HtmlFileGrid"
+                      Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Name="HtmlFileBodyMessageTextBlock"
+                               Margin="10,0,0,0"
+                               Foreground="Yellow"
+                               ToolTip="Путь файла из которого будет формироваться сообщение в формате HTMl"/>
+
+                    <Button Grid.Column="1"
+                            Content="Обзор..."
+                            Style="{DynamicResource MetroFlatButton}"
+                            Padding="20,4"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Click="BrowseHtmlFileButton_OnClick"
+                            Margin="10,0,0,0"/>
+                </Grid>
+                
+                <Button Grid.Column="2" 
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Padding="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Focusable="False"
+                        Margin="10,10,10,0"
+                        Click="LoadAttachedFileButton_OnClick">
+                    <Image Width="32"
+                           Height="32"
+                           Source="Images/ClipIcon.png"
+                           ToolTip="Прикрепить файл к письму"/>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Name="ProgressGrid"
+              Margin="-5,-10"
+              Visibility="Hidden">
+            <Rectangle HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch" 
+                       Fill="White" 
+                       Opacity="0.6" 
+                       Name="BackgroundRectangle" />
+            <controls:ProgressRing Width="70" 
+                                   Visibility="Visible" 
+                                   Name="Progress" 
+                                   VerticalAlignment="Center"
+                                   Margin="0,-80,0,0"/>
+            <TextBlock 
+                Text="Пожалуйста подождите идет рассылка писем..."
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Margin="0,40,0,0" 
+                Name="ProgressInformationTextBlock"/>
+
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Отмена"
+                    Padding="20,5"
+                    Style="{DynamicResource MetroFlatButton}"
+                    Margin="0,120,0,0"
+                    Click="CancelMailingButton_OnClick"/>
+        </Grid>
+    </Grid>
+</controls:MetroWindow>
